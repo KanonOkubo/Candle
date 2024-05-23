@@ -1,0 +1,15 @@
+<h1>売り上げ報告</h1>
+<h3>一覧ページ</h3>
+<%= link_to "新規投稿へ", new_report_path %>
+<div class="tweets-container">
+  <% @report.each do |r| %>
+    <div class="report">
+      <p>日付：<%= r.date %></p>
+      <p>会場：<%= r.place %></p>
+      <p>売上：<%= r.sales %></p>
+      <p>客数：<%= r.number %></p>
+    </div>
+    <%= link_to "編集", edit_report_path(r.id) %>
+  <% end %>
+</div>
+<%#= link_to "ホームに戻る", tweet_path %>

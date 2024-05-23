@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Candle</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <header>
+      <h1>Candle</h1>
+      <div class="header-list">
+      <ul>
+        <li><%= link_to "ホーム", tweets_path %></li>
+        <li><%= link_to "新規投稿",new_tweet_path %></li>
+        <li><%= link_to "ログイン",reports_path %></li>
+      </ul>
+      </div>
+    </header>
+    <main>
+      <%= yield %>
+    </main>
+
+    <footer>
+    <p>Copyright © Candle All Rights Reserved.</p>
+    </footer>
+  </body>
+
+</html>

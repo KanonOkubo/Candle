@@ -1,0 +1,24 @@
+<%= form_for @tweet do |f| %>
+    <div class="field">
+        <%= f.label :"日付" %>
+        <%= f.text_field :date, :size => 30 %>
+    </div>
+
+    <div class="field">
+        <%= f.label :"会場" %>
+        <%= f.text_field :place, :size => 30 %>
+    </div>
+
+    <div class="field">
+        <%= f.label :"値段"  %>
+        <%= f.number_field :price, :size => 10 %>
+    </div>
+
+
+    <div class="field">
+        <%= f.label :"説明"  %>
+        <%= f.text_area :comment, :size => "30x2" %>
+    </div>
+    
+    <%= f.submit "編集する" %>
+<% end %>

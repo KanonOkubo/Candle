@@ -1,0 +1,86 @@
+<h1>キャンドル売り上げ報告</h1>
+<h3>編集ページ</h3>
+<%= form_for @report do |f| %>
+
+
+    <div class="field">
+        <%= f.label :"日付" %>
+        <%= f.text_field :date, :size => 30 %>
+    </div>
+
+# データ型がstringで自由記述の入力フォーム
+    <div class="field">
+        <%= f.label :"会場" %>
+        <%= f.text_field :place, :size => 30 %>
+
+    </div>
+
+    <div class="field">
+        <%= f.label :"天気" %>
+        <%= f.text_field :weather, :size => 30 %>
+
+    </div>
+
+    <div class="field">
+        <%= f.label :"最高気温" %>
+        <%= f.number_field :temperature, step: "0.1", :size => 30 %>
+
+    </div>
+
+    <div class="field">
+        <%= f.label :"売り上げ"  %>
+        <%= f.number_field :sales, :size => 10 %>
+    </div>
+
+    <div class="field">
+        <%= f.label :"参加人数"  %>
+        <%= f.number_field :number, :size => 10 %>
+    </div>
+
+    <h3>容器</h3>
+    <div class="field">
+        <%= f.label :"Aグラス"  %>
+        <%= f.number_field :anumber, :size => 10 %>
+    </div>
+
+    <div class="field">
+        <%= f.label :"Lグラス"  %>
+        <%= f.number_field :lnumber, :size => 10 %>
+    </div>
+
+    <div class="field">
+        <%= f.label :"Kグラス"  %>
+        <%= f.number_field :knumber, :size => 10 %>
+    </div>
+
+    <div class="field">
+        <%= f.label :"Iグラス"  %>
+        <%= f.number_field :inumber, :size => 10 %>
+    </div>
+
+
+
+
+  <%= f.submit "編集する" %>
+<% end %>
+
+<div class="comment-wrapper">
+  <p>コメント一覧</p>
+  <% @messages.each do |c| %>
+    <div>
+      <%= c.user.email unless c.user.blank? %>
+      <br>
+      <%= c.content %>
+    </div>
+      <br>
+  <% end %>
+
+  <% if user_signed_in? %>
+    <%= form_with(model: [@report, @message], local: true) do |f| %>
+      <%= f.text_area :content %>
+      <%= button_tag type: "submit" do %>
+        <i class="far fa-comments"></i> コメントする
+      <% end %>
+    <% end %>
+  <% end %>
+</div>

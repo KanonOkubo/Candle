@@ -1,0 +1,27 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2024-04-25
+  place: MyString
+  weather: MyString
+  temperature: 1.5
+  sales: 1.5
+  number: 1
+  pricemean: 1
+  anumber: 1
+  lnumber: 1
+  knumber: 1
+  inumber: 1
+
+two:
+  date: 2024-04-25
+  place: MyString
+  weather: MyString
+  temperature: 1.5
+  sales: 1.5
+  number: 1
+  pricemean: 1
+  anumber: 1
+  lnumber: 1
+  knumber: 1
+  inumber: 1

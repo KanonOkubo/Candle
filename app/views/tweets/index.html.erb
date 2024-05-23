@@ -1,0 +1,91 @@
+<div class="tweets-container">
+  <h3>ジェルキャンドルって？</h3>
+  <div class="tweets-content">
+    ジェルキャンドルはとうめいでゼリーのようにプニプニのロウソクです
+    自分だけのオリジナルなキャンドルを作ろう！！
+    <%= link_to "詳しく", tweets_about_path %>
+  </div>
+</div>
+
+<h3>ブログ一覧</h3>
+
+<div class="tweets-container">
+  <% @tweet.each do |f| %>
+    <div class="tweet">
+    <%= image_tag f.resize_image_top if f.image_top.attached? %>
+      日付：<%= f.date %>
+      会場：<%= f.place %>
+    </div>
+    <%= link_to "詳細へ", tweet_path(f.id) %> 
+    
+  <% end %>
+</div>
+
+
+<h3>地図</h3>
+
+<h4>会場を検索</h4>
+ <%= form_tag({controller:"tweets",action:"index"}, method: :get) do %>
+   <%= date_field_tag :search %>
+   <%= submit_tag '検索する'  %>
+ <% end %>
+
+<div id='map'></div>
+<style>
+#map {
+    height: 500px;
+    width: 100%;
+}
+</style>
+
+<script>
+    function initMap() {
+
+     
+      let latlng = new google.maps.LatLng(38.60, 139.5);
+      
+      let styles = [
+           {
+            stylers: [
+             { "saturation": 0 },
+             { "lightness": 0 }
+            ]
+           }
+          ];
+
+      let map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 5.5,
+          styles: styles,
+          center: latlng
+      });
+      let transitLayer = new google.maps.TransitLayer();
+      transitLayer.setMap(map);
+
+
+      <% @tweets.each do |f|%>
+        ( function() { 
+          let markerLatLng = { lat: <%= f.lat %>, lng: <%= f.lng %> }; 
+          let marker = new google.maps.Marker({ 
+            position: markerLatLng, 
+            map: map 
+          });
+
+          let infowindow = new google.maps.InfoWindow({
+            position: markerLatLng,
+            content: "<a href= '<%= tweet_url(f.id) %>' target='_blank'><%= f.place %></a>"
+          });
+
+          marker.addListener('click', function() {
+            infowindow.open(map, marker);
+          });
+
+       })();
+      <% end %>
+       
+    }
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GMAP_API'] %>&callback=initMap" async defer></script>
+
+
+

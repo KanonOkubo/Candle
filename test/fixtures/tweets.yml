@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  image: MyString
+  date: 2024-04-25
+  place: MyString
+  price: 1
+  comment: MyText
+  address: MyText
+
+two:
+  image: MyString
+  date: 2024-04-25
+  place: MyString
+  price: 1
+  comment: MyText
+  address: MyText

@@ -1,0 +1,129 @@
+<h1>キャンドル</h1>
+<h3>売り上げ報告ページ</h3>
+<%= form_for @report do |f| %>
+
+
+    <div class="field">
+        <%= f.label :"日付" %>
+        <%= f.date_field :date, :size => 30 %>
+    </div>
+
+# データ型がstringで自由記述の入力フォーム
+    <div class="field">
+        <%= f.label :"会場" %>
+        <%= f.text_field :place, :size => 30 %>
+
+    </div>
+
+    <div class="field">
+        <%= f.label :"天気" %>
+        <%= f.text_field :weather, :size => 30 %>
+
+    </div>
+
+    <div class="field">
+        <%= f.label :"最高気温" %>
+        <%= f.number_field :temperature, :size => 30 %>
+
+    </div>
+
+# データ型がintegerで数字のみを入力するフォーム
+    <div class="field">
+        <%= f.label :"売り上げ"  %>
+        <%= f.number_field :sales, id: "sales", :size => 10 %>
+    </div>
+
+    <div class="field">
+        <%= f.label :"参加人数"  %>
+        <%= f.number_field :number, id: "number", :size => 10 %>
+    </div>
+
+    <div class="field">
+        <%= f.label :"単価"  %>
+        <%= f.number_field :pricemean, id: "pricemean", :size => 10 %>
+    </div>
+    
+    <script>
+        $('#number').change(function() {
+            var s = parseInt($('#sales').val());
+            var a = parseInt($('#number').val());
+
+    
+            var pricemean = s - a
+    
+            $('#pricemean').val(pricemean)
+        });
+    </script>
+
+    <h3>容器</h3>
+    <div class="field">
+        <%= f.label :"Aグラス"  %>
+        <%= f.number_field :anumber, :size => 10 %>
+    </div>
+
+    <div class="field">
+        <%= f.label :"Lグラス"  %>
+        <%= f.number_field :lnumber, :size => 10 %>
+    </div>
+
+    <div class="field">
+        <%= f.label :"Kグラス"  %>
+        <%= f.number_field :knumber, :size => 10 %>
+    </div>
+
+    <div class="field">
+        <%= f.label :"Iグラス"  %>
+        <%= f.number_field :inumber, :size => 10 %>
+    </div>
+
+
+    
+    <input type="checkbox" class="glass-check" id="glass" >
+    <label  class="glass-label" for="glass">容器</label>
+        <div class="glass-content">   
+            <div class="field">
+                <%= f.label :"Aグラス"  %>
+                <%= f.number_field :anumber, :size => 10 %>
+            </div>
+
+            <div class="field">
+                <%= f.label :"Lグラス"  %>
+                <%= f.number_field :lnumber, :size => 10 %>
+            </div>
+
+            <div class="field">
+                <%= f.label :"Kグラス"  %>
+                <%= f.number_field :knumber, :size => 10 %>
+            </div>
+
+            <div class="field">
+                <%= f.label :"Iグラス"  %>
+                <%= f.number_field :inumber, :size => 10 %>
+            </div>
+        </div>
+    <label for="cp_menu_bar2">menu02</label>
+    <input type="radio" name="radio" id="cp_menu_bar2" class="accordion" />
+    <ul id="link2">
+        <li><a href="">link01</a></li>
+        <li><a href="">link02</a></li>
+        <li><a href="">link03</a></li>
+        <li><a href="">link04</a></li>
+    </ul>
+
+
+    <h3>オプション</h3>
+    <div class="field">
+    </div>
+    <div class="field">
+    </div>
+    <div class="field">
+    </div>
+    <h3>キャラクター</h3>
+    <h3>ボード</h3>
+
+
+
+  <%= f.submit "報告する" %>
+<% end %>
+
+<%= link_to "一覧に戻る", reports_path %>

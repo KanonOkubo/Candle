@@ -1,0 +1,31 @@
+// Place all the styles related to the reports controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+.glass-label {
+	font-weight: bold;
+	line-height: 3;
+	position: relative;
+	display: block;
+	padding: 0 0 0 1em;
+	cursor: pointer;
+	margin: 0 0 1px 0;
+	background: #ff5959;
+}
+.glass-content {
+	overflow: hidden;
+	max-height: 0;
+	-webkit-transition: max-height 0.35s;
+	transition: max-height 0.35s;
+	color: #333333;
+	background: #ea3232;
+}
+.glass-check:checked + .glass-label + .glass-content{
+    height: 10000px;
+    opacity: 1;
+    padding: 10px;
+    visibility: visible;
+}
+
+
+

@@ -1,0 +1,60 @@
+<h1>Jell Candle</h1>
+<h3>ブログ詳細</h3>
+<div class="tweet">
+  <p><%= image_tag @tweet.resize_image_top if @tweet.image_top.attached? %>></p>
+  <p>日付：<%= @tweet.date %></p>
+  <p>会場：<%= @tweet.place %></p>
+  <p>費用目安：<%= @tweet.price %></p>
+  <p><%= @tweet.comment %></p>
+  <%= button_to "削除する", tweet_path(@tweet.id), method: :delete %>
+  <p>地図</p>
+  <div id='map'></div>
+  <style>
+  #map {
+    height: 400px;
+    width: 100%;
+  }
+  </style>
+
+  <script>
+  let map
+
+  function initMap(){
+    geocoder = new google.maps.Geocoder()
+
+    map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: <%= @tweet.lat %>, lng:<%= @tweet.lng %>},
+    zoom: 12,
+    });
+
+    marker = new google.maps.Marker({
+    position:  {lat: <%= @tweet.lat %>, lng:<%= @tweet.lng %>},
+    map: map
+    });
+  }
+  </script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['GMAP_API'] %>&callback=initMap" async defer></script>
+  
+  <div class="comment-wrapper">
+    <p>コメント一覧</p>
+    <% @comments.each do |c| %>
+      <div>
+        <br>
+        <%= c.content %>
+      </div>
+        <br>
+    <% end %>
+
+    <%= form_with(model: [@tweet, @comment], local: true) do |f| %>
+        <%= f.text_area :content %>
+        <%= button_tag type: "submit" do %>
+          <i class="far fa-comments"></i> コメントする
+        <% end %>
+    <% end %>
+  </div>
+</div>
+<%= link_to "編集", edit_tweet_path(@tweet.id) %>
+
+
+<%= link_to "ホームに戻る", tweets_path %>
