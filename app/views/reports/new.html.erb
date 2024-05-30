@@ -26,57 +26,6 @@
         <%= f.number_field :temperature, :size => 30 %>
 
     </div>
-
-# データ型がintegerで数字のみを入力するフォーム
-    <div class="field">
-        <%= f.label :"売り上げ"  %>
-        <%= f.number_field :sales, id: "sales", :size => 10 %>
-    </div>
-
-    <div class="field">
-        <%= f.label :"参加人数"  %>
-        <%= f.number_field :number, id: "number", :size => 10 %>
-    </div>
-
-    <div class="field">
-        <%= f.label :"単価"  %>
-        <%= f.number_field :pricemean, id: "pricemean", :size => 10 %>
-    </div>
-    
-    <script>
-        $('#number').change(function() {
-            var s = parseInt($('#sales').val());
-            var a = parseInt($('#number').val());
-
-    
-            var pricemean = s - a
-    
-            $('#pricemean').val(pricemean)
-        });
-    </script>
-
-    <h3>容器</h3>
-    <div class="field">
-        <%= f.label :"Aグラス"  %>
-        <%= f.number_field :anumber, :size => 10 %>
-    </div>
-
-    <div class="field">
-        <%= f.label :"Lグラス"  %>
-        <%= f.number_field :lnumber, :size => 10 %>
-    </div>
-
-    <div class="field">
-        <%= f.label :"Kグラス"  %>
-        <%= f.number_field :knumber, :size => 10 %>
-    </div>
-
-    <div class="field">
-        <%= f.label :"Iグラス"  %>
-        <%= f.number_field :inumber, :size => 10 %>
-    </div>
-
-
     
     <input type="checkbox" class="glass-check" id="glass" >
     <label  class="glass-label" for="glass">容器</label>
